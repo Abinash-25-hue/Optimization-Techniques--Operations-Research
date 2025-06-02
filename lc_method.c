@@ -3,11 +3,14 @@
 #include<stdlib.h>
 
 #define LINE_SIZE 1024
-#define MAX_COLS 100
+//#define MAX_COLS 100
 
 void main()
 {
     int index, jindex, has_file, supply, demand, l_index, l_jindex;
+
+    printf("\n                    !! Welcome to LC Method Solver !!                      \n");
+    printf("        This Code solves transportation problem with Least Cost Method.      \n");
     printf("\nDo you wanna enter data with a .csv file (Press 1) or manually (Press 0) ? : ");
     scanf("%d", &has_file);
 
