@@ -57,6 +57,7 @@ void main()
             }
             line[strcspn(line, "\n")] = 0;
         }
+        printf("\nAnswer : \n");
     }
     else if (has_file == 0)
     {
@@ -79,7 +80,7 @@ void main()
                 scanf("%lf", &cost[index][jindex]);
             }
         }
-        printf("Answer : \n");
+        printf("\nAnswer : \n");
     }
 
 
@@ -112,7 +113,6 @@ void main()
             for (jindex = 0; jindex < warehouse; jindex++)
             {
                 min_1 = (min_1 >= cost[index][jindex])? cost[index][jindex]: min_1;
-                //min_1 = (jindex == 0 && (cost[index][jindex] != -1))? cost[index][jindex]: (((min_1 >= cost[index][jindex]) && (cost[index][jindex] != -1))? cost[index][jindex]: min_1);
             }
             min_2 = 99999;
             for (jindex = 0; jindex < warehouse; jindex++)
@@ -128,8 +128,6 @@ void main()
             {
                 f_diff_array[index] = 0;
             }
-            //f_diff_array[index] = ((min_2 == 99999) || (f_array[index] <= 0))? 0: (min_2 - min_1);
-            //printf("%.1lf - %.1lf = %.1lf f\n", min_2, min_1, f_diff_array[index]);
         }
 
         //printf("\n");
@@ -143,7 +141,6 @@ void main()
                 for (jindex = 0; jindex < factory; jindex++)
                 {
                     min_1 = (cost[jindex][index] <= min_1)? cost[jindex][index]: min_1;
-                    //min_1 = ((jindex == 0) && (cost[jindex][index] != -1))? cost[jindex][index]: (((min_1 >= cost[jindex][index]) && (cost[jindex][index] != -1))? cost[jindex][index]: min_1);
                 }
                 min_2 = 99999;
                 for (jindex = 0; jindex < factory; jindex++)
@@ -152,20 +149,16 @@ void main()
                     {
                         min_2 = cost[jindex][index];
                     }
-                    //min_2 = ((jindex == 0) && (cost[jindex][index] != min_1) && (cost[jindex][index] != -1))? cost[jindex][index]: ((((min_2 >= cost[jindex][index]) && (cost[jindex][index] != -1)) && (cost[jindex][index] != min_1))? cost[jindex][index]: min_2);
-                    //printf("c[j][i] = %.1lf, m1 = %.1lf, m2 = %.1lf, j = %d, i = %d \n", cost[jindex][index], min_1, min_2, jindex, index);
                 }
-                //printf("%.1lf - %.1lf = %.1lf w\n", min_2, min_1, (min_2 - min_1));
                 w_diff_array[index] = ((min_2 == 99999) || (w_array[index] <= 0))? 0: (min_2 - min_1);
             }
             else
             {
                 w_diff_array[index] = 0;
             }
-            //diff_array[factory + index] = (min_2 - min_1);
         }
 
-        
+        // For checking ......
         //printf("\nSum = %.1lf \n", sum);
         //printf("f = %d, w = %d \n", factory, warehouse);
 
@@ -188,8 +181,6 @@ void main()
                 is_factory = 0;
             }
         }
-
-        //max_l = max_finder(diff_array, (factory + warehouse));
         
         if (is_factory == 1)
         {
@@ -219,6 +210,7 @@ void main()
         }
 
         //Printing Part
+        
         printf("\n");
         for (index = 0; index < factory; index++)
         {
@@ -242,6 +234,8 @@ void main()
         }
         printf("\n");
 
+        // For Checking Purposes during development :
+
         //printf("Max_l = %d, is_factory = %d, least = %.1lf, row = %d, column = %d ", max_l, is_factory, least, row, column);
         //Checkers
         /*printf("Max = %.1lf, ", max);
@@ -257,7 +251,6 @@ void main()
             f_array[row] -= w_array[column];
             w_array[column] = 0;
             is_factory = 0;
-            //printf("1 ");
         }
         else if (f_array[row] < w_array[column])
         {
@@ -265,14 +258,12 @@ void main()
             w_array[column] -= f_array[row];
             f_array[row] = 0;
             is_factory = 1;
-            //printf("2 ");
         }
         else
         {
             multiplier = f_array[row];
             f_array[row] = 0;
             w_array[column] = 0;
-            //printf("0 ");
         }
 
         printf("\nCost : %.1lf ", sum);
@@ -310,40 +301,7 @@ void main()
             }
             warehouse--;
         }
-        //printf("After : factory = %d, warehouse = %d \n", factory, warehouse);
-       
-        //element_is_present++;
-    
     }
-
-    
-
-
-    //Printing Part
-
-    /*printf("\n");
-    for (index = 0; index < factory; index++)
-    {
-        for (jindex = 0; jindex < warehouse; jindex++)
-        {
-            printf("%.1lf, ", cost[index][jindex]);   
-        }
-        printf("    |%.1lf|  %.1lf", f_array[index], f_diff_array[index]);
-        printf("\n");
-    }
-    printf("\n");
-    for (index = 0; index < warehouse; index++)
-    {
-        printf("%.1lf, ", w_array[index]);
-    }
-    printf("\n");
-    printf("-------------------------------\n");
-    for (index = 0; index < warehouse; index++)
-    {
-        printf("%.1lf, ", w_diff_array[index]);
-    }
-    printf("\n");
-    printf("\nSum = %.1lf \n", sum);*/
 
     printf("Total Cost is %.1lf. \nAllocations = %d \n\n", sum, allocations);
     if ((degeneracy_checker) == allocations)
@@ -414,7 +372,6 @@ int max_finder(double array[], int limit)
     {
         if (max <= array[index])
         {
-            //printf("max = %.1lf, array[index] = %.1lf, location = %d ", max, array[index], location);
             max = array[index];
             location = index;
             printf("location = %d \n", location);
